@@ -1,0 +1,95 @@
+# Super Market Billing System
+# products in supermarket are given below
+
+products = {
+    "Chips": 20,
+    "Milk": 30,
+    "Bread": 25,
+    "Eggs": 50,
+    "Butter": 40,
+    "Cheese": 80,
+    "Yogurt": 35,
+    "Orange Juice": 60,
+    "Apple": 15,
+    "Banana": 10,
+    "Grapes": 45,
+    "Tomato": 20,
+    "Potato": 25,
+    "Onion": 20,
+    "Carrot": 15,
+    "Chicken Breast": 150,
+    "Ground Beef": 200,
+    "Pasta": 40,
+    "Rice": 60,
+    "Flour": 50,
+    "Sugar": 45,
+    "Salt": 10,
+    "Black Pepper": 35,
+    "Cereal": 70,
+    "Tea": 30,
+    "Coffee": 90,
+    "Baking Powder": 20,
+    "Ketchup": 35,
+    "Mayonnaise": 40,
+    "Mustard": 25,
+    "Ice Cream": 100,
+    "Chocolate Bar": 30,
+    "Cookies": 50,
+    "Frozen Pizza": 120,
+    "Soda": 25,
+    "Water Bottle": 15,
+    "Laundry Detergent": 150,
+    "Shampoo": 70,
+    "Toothpaste": 40,
+    "Soap": 25
+}
+
+print("---------------Super Market---------------")
+while True:
+    name = input("Enter Customer Name").capitalize()
+    ph_no = input("Enter Customer Phone No")
+    amount = 0   #amount is initialized to zero
+    cart = {}    #this cart is an empty dictionary
+    while True:
+        quantity = float(input("Enter Quantity of the Product"))
+        while True:
+            product_name = input("Enter Name of the Product:").title()
+            if product_name not in products.keys():
+                print("Try again with the correct spelling of the product")
+            else:
+                break
+        amount += quantity * products[product_name]
+        cart[product_name] = products[product_name],"x",quantity
+        repeat = input("Do you want too add more").lower()  #repeat is a variable for user to add more products
+        if repeat in("no","n"):
+            break
+    discount = 0
+    if amount <= 500:
+        discount = 0.05
+        act_amt = amount-(amount*discount)   #act_amt is a actual amount after discount % is substracted from customer bill
+    elif amount <= 1000:
+        discount = 0.10
+        act_amt = amount-(amount*discount)
+    elif amount <= 5000:
+        discount = 0.15
+        act_amt = amount-(amount*discount)
+    else:
+        discount = 0.20
+        act_amt = amount-(amount*discount)
+    print("-"*40)
+    print("Customer Name: ",name)
+    print("Phone Number: ",ph_no)
+    for i,j in cart.items():
+        p,x,q = j
+        print(i,":",p,x,q)
+
+    print("Total Amount: ",amount)
+    print("Discount Offer: ",discount*100,"% OFF")
+    print("-"*40)
+    print("Actual Amount: ",act_amt)
+    print("-"*40)
+    nxt_person = input("Is there any Next person in queue?").lower()
+    if nxt_person in ("no","n"):
+        break
+print("""Thank You For Shopping
+     Visit Again """)
